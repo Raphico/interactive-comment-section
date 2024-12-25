@@ -38,6 +38,7 @@ class CommentContent extends LitElement {
             class="${styles.upvote}"
             aria-controls="voteCount"
             aria-label="upvote"
+            @click="${this.upvote}"
           >
             <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -56,6 +57,7 @@ class CommentContent extends LitElement {
             class="${styles.downvote}"
             aria-controls="voteCount"
             aria-label="downvote"
+            @click=${this.downvote}
           >
             <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -92,6 +94,20 @@ class CommentContent extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  upvote() {
+    this.comment = {
+      ...this.comment,
+      score: ++this.comment.score,
+    };
+  }
+
+  downvote() {
+    this.comment = {
+      ...this.comment,
+      score: --this.comment.score,
+    };
   }
 }
 
