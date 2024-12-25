@@ -229,4 +229,47 @@
   .comment-form button {
     justify-self: end;
   }
+
+  @media (min-width: 750px) {
+    main {
+      max-width: 730px;
+      margin: 0 auto;
+    }
+
+    article .comment-content {
+      grid-template-columns: auto 1fr;
+      gap: 0 2rem;
+    }
+    .vote {
+      flex-direction: column;
+      grid-column: 1 / 2;
+      grid-row: span 2;
+      max-height: 100px;
+    }
+    article p {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+    article header {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+    .comment-actions {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+
+    .replies {
+      padding-left: 2em;
+      margin-left: 2em;
+    }
+
+    .comment-form {
+      display: flex;
+      align-items: start;
+    }
+    .comment-form img {
+      order: -1;
+    }
+  }
 }
