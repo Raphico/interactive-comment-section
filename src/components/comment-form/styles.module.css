@@ -1,0 +1,49 @@
+.comment-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 1em;
+}
+
+.comment-form img {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+}
+
+.comment-form textarea {
+  grid-column: 1 / -1;
+  background-color: transparent;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  resize: none;
+  padding: 0.5em 1em;
+  color: var(--dark-blue);
+  width: 100%;
+  height: 96px;
+}
+
+.comment-form textarea:focus {
+  outline: 1px solid var(--moderate-blue);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--grayish-blue);
+  font-style: italic;
+}
+
+.comment-form button {
+  justify-self: end;
+}
+
+@media (min-width: 730px) {
+  .comment-form {
+    display: flex;
+    align-items: start;
+  }
+  .comment-form img {
+    order: -1;
+  }
+}

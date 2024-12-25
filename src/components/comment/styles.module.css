@@ -1,0 +1,20 @@
+article {
+  display: grid;
+  gap: 1rem;
+  background-color: var(--very-light-gray);
+  color: var(--grayish-blue);
+}
+
+.replies {
+  display: grid;
+  gap: 1rem;
+  padding-left: 1em;
+  border-left: 1px solid var(--light-gray);
+}
+
+@media (min-width: 730px) {
+  .replies {
+    padding-left: 2em;
+    margin-left: 2em;
+  }
+}

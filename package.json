@@ -11,5 +11,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "lit": "^3.2.1"
   }
 }

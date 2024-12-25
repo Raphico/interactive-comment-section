@@ -1,0 +1,164 @@
+.comment-content {
+  display: grid;
+  background-color: var(--white);
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+  border-radius: var(--radius);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  grid-column: 1 / -1;
+  gap: 0.75rem;
+}
+
+h2 {
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+p {
+  line-height: 1.5;
+  grid-column: 1 / -1;
+}
+
+img {
+  width: 35px;
+  height: 35px;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  font-weight: var(--fw-bold);
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  justify-self: end;
+}
+
+.replies {
+  display: grid;
+  gap: 1rem;
+  padding-left: 1em;
+  border-left: 1px solid var(--light-gray);
+}
+
+.reply,
+.edit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+  color: var(--moderate-blue);
+}
+
+:is(.reply, .edit) svg path {
+  fill: var(--moderate-blue);
+}
+
+:is(.reply, .edit):hover {
+  color: var(--light-grayish-blue);
+}
+
+:is(.reply, .edit):hover svg path {
+  fill: var(--light-grayish-blue);
+}
+
+.delete-reply {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+  color: var(--soft-red);
+}
+
+.delete-reply svg path {
+  fill: var(--soft-red);
+}
+
+.delete-reply:hover {
+  color: var(--pale-red);
+}
+
+.delete-reply:hover svg path {
+  fill: var(--pale-red);
+}
+
+.vote {
+  display: flex;
+  align-items: center;
+  background-color: var(--very-light-gray);
+  border-radius: var(--radius);
+  justify-self: start;
+}
+
+.downvote:hover svg path,
+.upvote:hover svg path {
+  fill: var(--moderate-blue);
+}
+
+.downvote,
+.upvote {
+  height: 40px;
+  padding-inline: 1em;
+}
+
+.vote svg path {
+  fill: var(--light-grayish-blue);
+}
+
+.vote-count {
+  color: var(--moderate-blue);
+  font-weight: var(--fw-bold);
+}
+
+.you {
+  background-color: var(--moderate-blue);
+  color: var(--white);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
+}
+
+.at {
+  color: var(--moderate-blue);
+  font-weight: var(--fw-bold);
+}
+
+@media (min-width: 730px) {
+  .comment-content {
+    grid-template-columns: auto 1fr;
+    gap: 0 2rem;
+  }
+
+  .vote {
+    flex-direction: column;
+    grid-column: 1 / 2;
+    grid-row: span 2;
+    max-height: 100px;
+  }
+
+  p {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .comment-actions {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+}

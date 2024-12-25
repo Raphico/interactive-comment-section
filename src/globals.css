@@ -1,0 +1,72 @@
+:root {
+  --moderate-blue: #5357b6;
+  --grayish-blue: #67727e;
+  --white: #ffffff;
+  --light-grayish-blue: #c5c6ef;
+  --dark-blue: #334253;
+  --very-light-gray: #f5f6fa;
+  --soft-red: #ed6368;
+  --light-gray: #e9ebf0;
+  --pale-red: #ffb8bb;
+
+  --fs-300: 0.8125rem;
+  --fs-400: 1rem;
+  --fs-500: 1.5rem;
+
+  --fw-regular: 400;
+  --fw-bold: 500;
+
+  --ff: "Rubik", serif;
+
+  --radius: 10px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-400);
+  background-color: var(--very-light-gray);
+  padding: 0;
+  margin: 0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+my-app {
+  padding: 2em 1em;
+  display: grid;
+  gap: 1rem;
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+app-comments {
+  display: grid;
+  gap: 1rem;
+}
+
+svg,
+img {
+  display: block;
+}
+
+.button-accent {
+  cursor: pointer;
+  border: 0;
+  background-color: var(--moderate-blue);
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  padding: 0.75em 1.5em;
+  border-radius: var(--radius);
+}
