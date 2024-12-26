@@ -53,6 +53,8 @@ class AppComment extends LitElement {
 
     if (parentCommentId) {
       $form.dataset.parentComment = parentCommentId;
+    } else {
+      $form.dataset.parentComment = "";
     }
     $form.dataset.comment = commentId;
 
