@@ -23,27 +23,8 @@ class AppComments extends LitElement {
       return html`<app-comment
         .comment=${comment}
         .currentUser=${this.currentUser}
-        .deleteReply=${this.deleteReply.bind(this)}
-        .deleteComment=${this.deleteComment.bind(this)}
       ></app-comment>`;
     })} `;
-  }
-
-  deleteReply(commentId, replyId) {
-    this.comments = this.comments.map(function (comment) {
-      if (comment.id == commentId) {
-        comment.replies = comment.replies.filter(
-          (reply) => reply.id != replyId
-        );
-        return comment;
-      }
-
-      return comment;
-    });
-  }
-
-  deleteComment(commentId) {
-    this.comments = this.comments.filter((comment) => comment.id != commentId);
   }
 }
 

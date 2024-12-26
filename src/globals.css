@@ -69,4 +69,5 @@ img {
   font-weight: var(--fw-bold);
   padding: 0.75em 1.5em;
   border-radius: var(--radius);
+  text-wrap: nowrap;
 }

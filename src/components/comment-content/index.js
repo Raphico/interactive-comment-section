@@ -6,9 +6,7 @@ class CommentContent extends LitElement {
   static properties = {
     comment: { type: Object },
     currentUser: { type: Object },
-    deleteReply: { type: Function },
-    deleteComment: { type: Function },
-    parentCommentId: { type: Number },
+    showDeleteModal: { type: Function },
   };
 
   constructor() {
@@ -17,8 +15,7 @@ class CommentContent extends LitElement {
     this.parentCommentId = null;
     this.comment = {};
     this.currentUser = {};
-    this.deleteReply = () => {};
-    this.deleteComment = () => {};
+    this.showDeleteModal = () => {};
   }
 
   createRenderRoot() {
@@ -78,10 +75,7 @@ class CommentContent extends LitElement {
             ? html`<button
                 class="${styles["delete-reply"]}"
                 aria-label="Delete Reply"
-                @click=${() =>
-                  this.parentCommentId
-                    ? this.deleteReply(this.parentCommentId, this.comment.id)
-                    : this.deleteComment(this.comment.id)}
+                @click=${this.showDeleteModal}
               >
                 <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
                   <path

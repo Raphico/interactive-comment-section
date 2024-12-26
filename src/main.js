@@ -1,7 +1,8 @@
 import { html, LitElement } from "lit";
+import { comments, currentUser } from "./data.json";
 import "./components/comment-form";
 import "./components/comments";
-import { comments, currentUser } from "./data.json";
+import "./components/modal";
 
 class MyApp extends LitElement {
   static properties = {
@@ -30,6 +31,9 @@ class MyApp extends LitElement {
         .currentUser=${this.currentUser}
         .addComment=${this.addComment.bind(this)}
       ></comment-form>
+      <delete-modal
+        .deleteComment=${this.deleteComment.bind(this)}
+      ></delete-modal>
     `;
   }
 
@@ -45,6 +49,23 @@ class MyApp extends LitElement {
         replies: [],
       },
     ];
+  }
+
+  deleteComment(commentId, parentCommentId) {
+    if (parentCommentId) {
+      this.comments = this.comments.map((comment) => {
+        if (comment.id == parentCommentId) {
+          return {
+            ...comment,
+            replies: comment.replies.filter((reply) => reply.id != commentId),
+          };
+        }
+        return comment;
+      });
+      return;
+    }
+
+    this.comments = this.comments.filter((comment) => comment.id != commentId);
   }
 }
 

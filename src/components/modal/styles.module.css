@@ -1,0 +1,53 @@
+:modal {
+  background-color: var(--white);
+  color: var(--grayish-blue);
+  border: 0;
+  width: 90%;
+  max-width: 400px;
+  border-radius: var(--radius);
+  padding: 2em;
+}
+
+:modal h2 {
+  color: var(--dark-blue);
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+}
+
+:modal p {
+  margin: 1em 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.button-cancel {
+  background-color: var(--grayish-blue);
+}
+
+.button-delete {
+  background-color: var(--soft-red);
+}
+
+.button-delete:hover {
+  background-color: var(--pale-red);
+}
+
+.button-cancel:hover {
+  background-color: var(--dark-blue);
+}
+.button-cancel,
+.button-delete {
+  padding-inline: 1em;
+}
+
+@media (min-width: 730px) {
+  .button-cancel,
+  .button-delete {
+    padding-inline: 2em;
+  }
+}

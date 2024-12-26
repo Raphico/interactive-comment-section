@@ -2,6 +2,12 @@
 
 ![App preview](./screenshot.png)
 
+## Tools
+
+1. Web components with [lit](https://lit.dev/docs/v1)
+2. Vite for building
+3. PostCSS & CSS Modules
+
 # Running locally
 
 1. clone repository
