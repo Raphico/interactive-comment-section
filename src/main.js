@@ -26,8 +26,25 @@ class MyApp extends LitElement {
         .comments=${this.comments}
         .currentUser=${this.currentUser}
       ></app-comments>
-      <comment-form .currentUser=${this.currentUser}></comment-form>
+      <comment-form
+        .currentUser=${this.currentUser}
+        .addComment=${this.addComment.bind(this)}
+      ></comment-form>
     `;
+  }
+
+  addComment(content) {
+    this.comments = [
+      ...this.comments,
+      {
+        id: ++this.comments.length,
+        content,
+        score: 0,
+        createdAt: "now",
+        user: this.currentUser,
+        replies: [],
+      },
+    ];
   }
 }
 

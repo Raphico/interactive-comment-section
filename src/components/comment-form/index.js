@@ -4,12 +4,14 @@ import { html, LitElement } from "lit";
 
 class CommentForm extends LitElement {
   static properties = {
+    addComment: { type: Function },
     currentUser: { type: Object },
   };
   constructor() {
     super();
 
     this.currentUser = {};
+    this.addComment = () => {};
   }
 
   createRenderRoot() {
@@ -18,7 +20,11 @@ class CommentForm extends LitElement {
 
   render() {
     return html`
-      <form class="${styles["comment-form"]}">
+      <form
+        id="commentForm"
+        class="${styles["comment-form"]}"
+        @submit="${this.onSubmit}"
+      >
         <textarea
           name="comment"
           id="comment"
@@ -29,9 +35,19 @@ class CommentForm extends LitElement {
           src="${this.currentUser.image.webp}"
           alt="${this.currentUser.username} profile photo"
         />
-        <button class="button-accent">send</button>
+        <button class="button-accent" type="submit">send</button>
       </form>
     `;
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const $form = document.querySelector("#commentForm");
+
+    const formData = new FormData($form);
+
+    this.addComment(formData.get("comment"));
+    $form.querySelector("textarea").value = "";
   }
 }
 
