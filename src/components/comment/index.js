@@ -6,6 +6,8 @@ class AppComment extends LitElement {
   static properties = {
     comment: { type: Object },
     currentUser: { type: Object },
+    deleteReply: { type: Function },
+    deleteComment: { type: Function },
   };
 
   constructor() {
@@ -13,6 +15,8 @@ class AppComment extends LitElement {
 
     this.comment = {};
     this.currentUser = {};
+    this.deleteReply = () => {};
+    this.deleteComment = () => {};
   }
 
   createRenderRoot() {
@@ -25,6 +29,7 @@ class AppComment extends LitElement {
         <comment-content
           .comment=${this.comment}
           .currentUser=${this.currentUser}
+          .deleteComment=${this.deleteComment}
         ></comment-content>
 
         ${this.comment.replies.length > 0
@@ -33,8 +38,10 @@ class AppComment extends LitElement {
                 ${this.comment.replies.map((reply) => {
                   return html`
                     <comment-content
+                      .parentCommentId=${this.comment.id}
                       .comment=${reply}
                       .currentUser=${this.currentUser}
+                      .deleteReply=${this.deleteReply}
                     ></comment-content>
                   `;
                 })}
