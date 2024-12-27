@@ -7,6 +7,7 @@ class CommentContent extends LitElement {
     comment: { type: Object },
     currentUser: { type: Object },
     showDeleteModal: { type: Function },
+    _editMode: { type: Boolean, state: true },
   };
 
   constructor() {
@@ -16,6 +17,7 @@ class CommentContent extends LitElement {
     this.comment = {};
     this.currentUser = {};
     this.showDeleteModal = () => {};
+    this._editMode = false;
   }
 
   createRenderRoot() {
@@ -31,11 +33,27 @@ class CommentContent extends LitElement {
             alt="${this.comment.user.username} profile photo"
           />
           <h2>${this.comment.user.username}</h2>
+          ${this.currentUser.username == this.comment.user.username
+            ? html`<span class="${styles.you}">you</span>`
+            : html``}
           <time datetime="${parseRelativeTime(this.comment.createdAt)}"
             >${this.comment.createdAt}</time
           >
         </header>
-        <p>${this.comment.content}</p>
+        ${!this._editMode
+          ? html`<p>${this.comment.content}</p>`
+          : html`
+              <form
+                id="updateForm"
+                class="${styles["update-form"]}"
+                @submit="${this.updateComment}"
+              >
+                <textarea name="update" id="update" aria-label="Update Comment">
+${this.comment.content}</textarea
+                >
+                <button type="submit" class="button-accent">update</button>
+              </form>
+            `}
         <div class="${styles.vote}">
           <button
             class="${styles.upvote}"
@@ -88,7 +106,11 @@ class CommentContent extends LitElement {
             : html``}
           ${this.currentUser.username == this.comment.user.username
             ? html`
-                <button class="${styles.edit}" aria-label="Edit">
+                <button
+                  class="${styles.edit}"
+                  aria-label="Edit"
+                  @click="${() => (this._editMode = true)}"
+                >
                   <svg
                     width="14"
                     height="14"
@@ -134,6 +156,20 @@ class CommentContent extends LitElement {
       ...this.comment,
       score: --this.comment.score,
     };
+  }
+
+  updateComment(event) {
+    event.preventDefault();
+
+    const $form = document.getElementById("updateForm");
+    const formData = new FormData($form);
+
+    this.comment = {
+      ...this.comment,
+      content: formData.get("update"),
+    };
+
+    this._editMode = false;
   }
 }
 

@@ -134,6 +134,42 @@ button {
   font-weight: var(--fw-bold);
 }
 
+.update-form {
+  display: grid;
+  gap: 1rem;
+  margin: 1em 0;
+  grid-column: 1 / -1;
+}
+
+.update-form textarea {
+  background-color: transparent;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  resize: none;
+  padding: 0.5em 1em;
+  color: var(--dark-blue);
+  width: 100%;
+  height: 124px;
+}
+
+.update-form textarea:focus {
+  outline: 1px solid var(--moderate-blue);
+}
+
+.update-form button {
+  justify-self: end;
+}
+
+@media (min-width: 730px) {
+  .comment-form {
+    display: flex;
+    align-items: start;
+  }
+  .comment-form img {
+    order: -1;
+  }
+}
+
 @media (min-width: 730px) {
   .comment-content {
     grid-template-columns: auto 1fr;
@@ -147,7 +183,8 @@ button {
     max-height: 100px;
   }
 
-  p {
+  p,
+  .update-form {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
