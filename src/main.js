@@ -41,7 +41,7 @@ class MyApp extends LitElement {
     this.comments = [
       ...this.comments,
       {
-        id: ++this.comments.length,
+        id: Date.now(),
         content,
         score: 0,
         createdAt: "now",

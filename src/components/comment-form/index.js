@@ -1,5 +1,4 @@
 import styles from "./styles.module.css";
-import { currentUser } from "../../data.json";
 import { html, LitElement } from "lit";
 
 class CommentForm extends LitElement {

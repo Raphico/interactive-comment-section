@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { parseRelativeTime } from "../../helpers";
+import { onClickOutside, parseRelativeTime } from "../../helpers";
 import styles from "./styles.module.css";
 
 class CommentContent extends LitElement {
@@ -7,6 +7,7 @@ class CommentContent extends LitElement {
     comment: { type: Object },
     currentUser: { type: Object },
     showDeleteModal: { type: Function },
+    showReplyForm: { type: Function },
     _editMode: { type: Boolean, state: true },
   };
 
@@ -16,6 +17,7 @@ class CommentContent extends LitElement {
     this.comment = {};
     this.currentUser = {};
     this.showDeleteModal = () => {};
+    this.showReplyForm = () => {};
     this._editMode = false;
   }
 
@@ -41,9 +43,12 @@ class CommentContent extends LitElement {
                 class="${styles["update-form"]}"
                 @submit="${this.updateComment}"
               >
-                <textarea name="update" id="update" aria-label="Update Comment">
-${this.comment.content}</textarea
-                >
+                <textarea
+                  name="update"
+                  id="update"
+                  aria-label="Update Comment"
+                  .value=${this.comment.content}
+                ></textarea>
                 <button type="submit" class="button-accent">update</button>
               </form>
             `}
@@ -93,7 +98,12 @@ ${this.comment.content}</textarea
               <button
                 class="${styles.edit}"
                 aria-label="Edit"
-                @click="${() => (this._editMode = true)}"
+                @click="${() => {
+                  this._editMode = true;
+                  onClickOutside(this, () => {
+                    this._editMode = false;
+                  });
+                }}"
               >
                 <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -105,7 +115,11 @@ ${this.comment.content}</textarea
               </button>
             `
           : html`
-              <button class="${styles.reply}" aria-label="Reply">
+              <button
+                class="${styles.reply}"
+                aria-label="Reply"
+                @click="${this.showReplyForm}"
+              >
                 <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z"
