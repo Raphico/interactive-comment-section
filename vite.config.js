@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/interactive-comment-section",
+  base: "/interactive-comment-section/",
 });
